@@ -141,9 +141,17 @@ def execute_list(Mlist):
 		send()
 		notify('Send button pressed')
 
-	CFG_value = int(Mlist[4])/10
-	op('CFG').par.text = CFG_value
-	op('Stable_Diffusion').par.Node3par2 = CFG_value
+	# CFG_value = int(Mlist[4])/10
+	steps = int(Mlist[4])
+	limitedSteps = 10
+	if steps <= 1:
+		limitedSteps = 1
+	elif steps >= 30:
+		limitedSteps = 30
+	else:
+		limitedSteps = steps
+	op('Quality1').par.text = limitedSteps
+	# op('Stable_Diffusion').par.Node3par2 = CFG_value
 
 	# steps_value = int(Mlist[4])
 	# op('steps').par.text = steps_value
@@ -155,10 +163,10 @@ def execute_list(Mlist):
 	# op('Stable_Diffusion').par.Node3par5 = denoise_value
 
 
-	strength_value = int(Mlist[0])/100
-	# denoise_value = linear_mapping(denoise_value, 0, 128, 0, 1)
-	op('strength').par.text = strength_value
-	op('Stable_Diffusion').par.Node18par10 = strength_value
+	# strength_value = int(Mlist[0])/100
+	# # denoise_value = linear_mapping(denoise_value, 0, 128, 0, 1)
+	# op('strength').par.text = strength_value
+	# op('Stable_Diffusion').par.Node18par10 = strength_value
 
 
 if __name__ == "__main__":
