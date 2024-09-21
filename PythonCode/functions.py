@@ -1,4 +1,5 @@
 import time
+from decimal import Decimal
 
 def spaceToUnderscore(string):
 	return string.replace(' ', '_')
@@ -35,7 +36,7 @@ def preset1():
 	# op('username').par.text = "jinran"
 	op('prompt').par.text = "cyberpunk neon world"
 	op('Stable_Diffusion').par.Node15par9 = 'crop1'
-	send()
+	# send()
 	# op('Stable_Diffusion').par.Node6par6 = op('prompt').par.text
 	# op('Stable_Diffusion').par.Stream = True
 	notify('Preset 1 loaded')
@@ -46,7 +47,7 @@ def preset2():
 	# op('username').par.text = "chenxuan"
 	op('prompt').par.text = "in space station"
 	op('Stable_Diffusion').par.Node15par9 = 'crop1'
-	send()
+	# send()
 	notify('Preset 2 loaded')
 	# op('Stable_Diffusion').par.Stream = True
 	return
@@ -167,6 +168,52 @@ def execute_list(Mlist):
 	# # denoise_value = linear_mapping(denoise_value, 0, 128, 0, 1)
 	# op('strength').par.text = strength_value
 	# op('Stable_Diffusion').par.Node18par10 = strength_value
+
+def changeValue(panelValue, prev):
+	if panelValue.val == 0:
+		return
+	elif panelValue.val == 44: # guidance -- |  Keymap: ,
+		#op('slider1').par.value0 = 10
+		step = Decimal('0.01')
+		boundary = [0,1]
+		modifyValue('GuidanceValue', -step, boundary)
+	elif panelValue.val == 46: # guidance ++ |  Keymap: ,
+		step = Decimal('0.01')
+		boundary = [0,1]
+		modifyValue('GuidanceValue', step, boundary)
+	elif panelValue.val == 59: # Redrawing | keymap: ;
+		step = Decimal('0.01')
+		boundary = [0,2]
+		modifyValue('RedrawingValue', -step, boundary)
+	elif panelValue.val == 39: # Redrawing | keymap: '
+		step = Decimal('0.01')
+		boundary = [0,2]
+		modifyValue('RedrawingValue', step, boundary)
+	elif panelValue.val == 57: # Quality | keymap: 9
+		step = Decimal('1')
+		boundary = [1,25]
+		modifyValue('QualityValue', -step, boundary)
+	elif panelValue.val == 48: # Quality | keymap: 0
+		step = Decimal('1')
+		boundary = [1,25]
+		modifyValue('QualityValue', step, boundary)
+	elif panelValue.val == 91: # Abstraction | keymap: 0
+		step = Decimal('0.1')
+		boundary = [0,5]
+		modifyValue('AbstractionValue', -step, boundary)
+	elif panelValue.val == 93: # Abstraction | keymap: 0
+		step = Decimal('0.1')
+		boundary = [0,5]
+		modifyValue('AbstractionValue', step, boundary)
+	return
+	
+def modifyValue(name, step, boundary):
+	value = op(name).text
+	value = Decimal(value) + step
+	if value <= boundary[1] and value >= boundary[0]:
+		op(name).text = value
+	return
+
 
 
 if __name__ == "__main__":
