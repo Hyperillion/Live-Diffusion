@@ -34,8 +34,8 @@ def saveEnd():
 def preset1():
 	# op('workflowAPI').par.file = "D:\Install_Location\project_touchdesigner\comfyUI_416\preset1.json"   #for different json file
 	# op('username').par.text = "jinran"
-	op('prompt').par.text = "cyberpunk neon world"
-	op('Stable_Diffusion').par.Node15par9 = 'crop1'
+	op('prompt').par.text = "skeletons walking around, spotlight on the face, festive haunted halloween night, ghost and zombies floating, bright full moon in a dark sky, shadowy trees, haunted mansion in the distance, eerie fog, bats flying, ghosts and witches, spooky graveyard with old tombstones, black cats, cobwebs, cinematic lighting, high detail, photorealistic, 8k raw"
+	# op('Stable_Diffusion').par.Node15par9 = 'crop1'
 	# send()
 	# op('Stable_Diffusion').par.Node6par6 = op('prompt').par.text
 	# op('Stable_Diffusion').par.Stream = True
@@ -45,15 +45,35 @@ def preset1():
 def preset2():
 	# op('workflowAPI').par.file = "D:\Install_Location\project_touchdesigner\comfyUI_416\preset2.json"   #for different json file
 	# op('username').par.text = "chenxuan"
-	op('prompt').par.text = "in space station"
-	op('Stable_Diffusion').par.Node15par9 = 'crop1'
+	op('prompt').par.text = "a bright halloween pumpkin party, (ghost on the top:1.4), everyone wearing a pumpkin head, glowing jack-o'-lanterns in various sizes with cheerful expressions, colorful lights hanging from trees, vibrant autumn leaves, cozy picnic tables with festive decorations, friendly ghosts and kids in costumes, a soft glow from lanterns, candy bowls, hay bales and pumpkins arranged for a harvest festival, warm lighting, inviting atmosphere, photorealistic, extremely detailed, 8k, dslr"
+	# op('Stable_Diffusion').par.Node15par9 = 'crop1'
 	# send()
 	notify('Preset 2 loaded')
 	# op('Stable_Diffusion').par.Stream = True
 	return
 	
+def preset3():
+	# op('workflowAPI').par.file = "D:\Install_Location\project_touchdesigner\comfyUI_416\preset2.json"   #for different json file
+	# op('username').par.text = "chenxuan"
+	op('prompt').par.text = "a lunxurious halloween vampire ball in a gothic castle, guests in elegant gothic attire, large red curtains and antique furniture, vampires with pale skin and red eyes, fancy masks and intricate costumes, dark roses and candles, spooky and elegant, high detail, photorealistic, 8k raw."
+	# op('Stable_Diffusion').par.Node15par9 = 'crop1'
+	# send()
+	notify('Preset 3 loaded')
+	# op('Stable_Diffusion').par.Stream = True
+	return
+def preset4():
+	# op('workflowAPI').par.file = "D:\Install_Location\project_touchdesigner\comfyUI_416\preset2.json"   #for different json file
+	# op('username').par.text = "chenxuan"
+	op('prompt').par.text = "An eeire halloween classroom, decorated with cobwebs and hanging skeletons, desks filled with jack-o-lanterns glowing with spooky faces, faintly glowing ghosts hovering near the chalkboard, old books stacked on shelves, scattered candy on desks, low warm lighting , mysterious atmosphere, photorealistic and creepy yet playful, realistic, 8k raw."
+	# op('Stable_Diffusion').par.Node15par9 = 'crop1'
+	# send()
+	notify('Preset 4 loaded')
+	# op('Stable_Diffusion').par.Stream = True
+	return
+
+
 def stream():
-	op('Stable_Diffusion').par.Node15par9 = 'crop1'
+	# op('Stable_Diffusion').par.Node15par9 = 'crop1'
 	# op('Stable_Diffusion').par.Stream = True
 	if (op('Stable_Diffusion').par.Stream):
 		op('Stable_Diffusion').par.Stream = False
@@ -183,11 +203,11 @@ def changeValue(panelValue, prev):
 		modifyValue('GuidanceValue', step, boundary)
 	elif panelValue.val == 59: # Redrawing | keymap: ;
 		step = Decimal('0.01')
-		boundary = [0,2]
+		boundary = [0,5]
 		modifyValue('RedrawingValue', -step, boundary)
 	elif panelValue.val == 39: # Redrawing | keymap: '
 		step = Decimal('0.01')
-		boundary = [0,2]
+		boundary = [0,5]
 		modifyValue('RedrawingValue', step, boundary)
 	elif panelValue.val == 57: # Quality | keymap: 9
 		step = Decimal('1')
@@ -199,12 +219,26 @@ def changeValue(panelValue, prev):
 		modifyValue('QualityValue', step, boundary)
 	elif panelValue.val == 91: # Abstraction | keymap: 0
 		step = Decimal('0.1')
-		boundary = [0,5]
+		boundary = [0,10]
 		modifyValue('AbstractionValue', -step, boundary)
 	elif panelValue.val == 93: # Abstraction | keymap: 0
 		step = Decimal('0.1')
-		boundary = [0,5]
+		boundary = [0,10]
 		modifyValue('AbstractionValue', step, boundary)
+	elif panelValue.val == 49: # preset1 | keymap: 1
+		preset1()
+	elif panelValue.val == 50: # preset2 | keymap: 2
+		preset2()
+	elif panelValue.val == 51: # preset3 | keymap: 3
+		preset3()
+	elif panelValue.val == 52: # preset4 | keymap: 4
+		preset4()
+	elif panelValue.val == 112: # pause | keymap: p
+		op('buttonPanic').par.value0 = 1
+	elif panelValue.val == 10: # save | keymap: enter
+		op('buttonSave').par.value0 = 1
+	elif panelValue.val == 32: # stream | keymap: sapce
+		op('stream1').par.value0 = 1
 	return
 	
 def modifyValue(name, step, boundary):
