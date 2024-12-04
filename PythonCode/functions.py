@@ -45,7 +45,7 @@ def preset1():
 def preset2():
 	# op('workflowAPI').par.file = "D:\Install_Location\project_touchdesigner\comfyUI_416\preset2.json"   #for different json file
 	# op('username').par.text = "chenxuan"
-	op('prompt').par.text = "a bright halloween pumpkin party, (ghost on the top:1.4), everyone wearing a pumpkin head, glowing jack-o'-lanterns in various sizes with cheerful expressions, colorful lights hanging from trees, vibrant autumn leaves, cozy picnic tables with festive decorations, friendly ghosts and kids in costumes, a soft glow from lanterns, candy bowls, hay bales and pumpkins arranged for a harvest festival, warm lighting, inviting atmosphere, photorealistic, extremely detailed, 8k, dslr"
+	op('prompt').par.text = "A neon-drenched cyberpunk world emerging from a sleek, futuristic office. The room is filled with glowing holographic screens, chrome furniture, and dark metallic surfaces. Outside the floor-to-ceiling windows, a sprawling city of towering skyscrapers is bathed in neon pinks, blues, and purples, with flying cars zipping between the buildings. The streets below are crowded with people in high-tech clothing, illuminated by massive digital billboards. Rain falls, creating a reflective, moody atmosphere. Cybernetic enhancements, robotic drones, and glowing circuitry are visible everywhere. The air is thick with energy, and the sky above is an electric canvas of glowing advertisements and digital chaos"
 	# op('Stable_Diffusion').par.Node15par9 = 'crop1'
 	# send()
 	notify('Preset 2 loaded')

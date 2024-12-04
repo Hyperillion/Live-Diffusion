@@ -24,7 +24,7 @@ DHT11 dht11(4);
 void setup() {
   // Initialize serial communication to allow debugging and data readout.
   // Using a baud rate of 9600 bps.
-  Serial.begin(9600);
+  Serial.begin(115200);
   pinMode(LED1, OUTPUT);
   pinMode(LED2, OUTPUT);
   pinMode(LED3, OUTPUT);
@@ -44,7 +44,8 @@ void loop() {
   // If there are errors, print the appropriate error messages.
   if (result == 0) {
     digitalWrite(LED1, HIGH);
-    Serial.println(temperature);
+    Serial.print(temperature);
+    Serial.print(',');
     Serial.println(humidity);
     if (temperature > 25){
       digitalWrite(LED2, HIGH);
